@@ -15,6 +15,11 @@ jobs:
       matrix:
         ruby:
           - '3.1.3'
+    services:
+      surrealdb:
+        image: rinatshay/surrealdb-service:latest
+        ports:
+        - 8000:8000
 
     steps:
     - uses: actions/checkout@v3
@@ -26,4 +31,6 @@ jobs:
     - name: Run lints
       run: bundle exec rubocop
     - name: Run tests
+      env:
+        DATABASE_URL: http://root:root@localhost:8000/test/test
       run: bundle exec rake test
