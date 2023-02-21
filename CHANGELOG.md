@@ -1,4 +1,8 @@
-## v0.1.0 (2023-02-21)
+## v0.1.1 (2023-02-21)
+
+### Fix
+
+- **http**: ensure thread-safety
 
 ### Refactor
 
