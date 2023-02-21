@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require_relative "lib/surrealdb/version"
+require_relative "lib/surrealdb/client/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "surrealdb"
-  spec.version = SurrealDB::VERSION
+  spec.name = "surrealdb-client"
+  spec.version = SurrealDB::Client::VERSION
   spec.authors = ["Rinat Shaykhutdinov"]
   spec.email = ["mail@rinatshay.com"]
 
-  spec.summary = "SurrealDB driver for Ruby"
+  spec.summary = "SurrealDB client for Ruby (HTTP and WebSocket)"
   spec.homepage = "https://github.com/ri-nat/surrealdb.ruby"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"

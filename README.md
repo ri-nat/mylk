@@ -1,4 +1,4 @@
-# SurrealDB Ruby Driver
+# SurrealDB client for Ruby
 
 [![Tests](https://github.com/ri-nat/surrealdb.ruby/actions/workflows/main.yml/badge.svg)](https://github.com/ri-nat/surrealdb.ruby/actions/workflows/main.yml)
 
@@ -7,7 +7,7 @@
 Install the gem and add to the application's Gemfile:
 
 ```bash
-gem 'surrealdb', git: 'https://github.com/ri-nat/surrealdb.ruby'
+gem "surrealdb-client"
 ```
 
 ## Usage
@@ -19,9 +19,9 @@ Database connection string is in the format of `surrealdb://<username>:<password
 ### HTTP Client
 
 ```ruby
-require 'surrealdb'
+require "surrealdb/client/http"
 
-client = SurrealDB::Clients::HTTP.new("surrealdb://root:root@localhost:8000/test/test")
+client = SurrealDB::Client::HTTP.new("surrealdb://root:root@localhost:8000/test/test")
 client.connect
 
 response = client.execute("INFO FOR DB")
@@ -34,9 +34,9 @@ response.result # => {"dl"=>{}, "dt"=>{}, "pa"=>{}, "sc"=>{}, "tb"=>{}}
 ### Websocket Client
 
 ```ruby
-require 'surrealdb'
+require "surrealdb/client/websocket"
 
-client = SurrealDB::Clients::Websocket.new("surrealdb://root:root@localhost:8000/test/test")
+client = SurrealDB::Client::Websocket.new("surrealdb://root:root@localhost:8000/test/test")
 client.connect
 
 response = client.execute("INFO FOR DB")

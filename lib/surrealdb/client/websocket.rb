@@ -5,7 +5,7 @@ require "websocket-client-simple"
 require_relative "base"
 
 module SurrealDB
-  module Clients
+  module Client
     # Websocket client for the SurrealDB
     class Websocket < Base
       WAIT_SLEEP_DURATION = 0.001 # 1 millisecond
@@ -107,7 +107,7 @@ module SurrealDB
 
       def headers
         {
-          "User-Agent" => "SurrealDB Ruby Client #{SurrealDB::VERSION}"
+          "User-Agent" => "SurrealDB Ruby Client #{SurrealDB::Client::VERSION}"
         }
       end
     end

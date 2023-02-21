@@ -2,8 +2,8 @@
 
 require "test_helper"
 
-class TestSurrealDB < Minitest::Test
+class TestClient < Minitest::Test
   def test_that_it_has_a_version_number
-    refute_nil ::SurrealDB::VERSION
+    refute_nil ::SurrealDB::Client::VERSION
   end
 end

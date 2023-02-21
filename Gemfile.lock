@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    surrealdb (0.1.0)
+    surrealdb-client (0.1.0)
       websocket-client-simple (~> 0.6)
 
 GEM
@@ -46,7 +46,7 @@ DEPENDENCIES
   rake (~> 13.0)
   rbs (~> 2.8)
   rubocop (~> 1.21)
-  surrealdb!
+  surrealdb-client!
 
 BUNDLED WITH
    2.3.26

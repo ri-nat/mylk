@@ -7,7 +7,7 @@ require "json"
 require_relative "base"
 
 module SurrealDB
-  module Clients
+  module Client
     # HTTP client for the SurrealDB
     class HTTP < Base
       def initialize(url)
@@ -56,7 +56,7 @@ module SurrealDB
 
       def headers
         @headers ||= {
-          "User-Agent" => "SurrealDB Ruby Client #{SurrealDB::VERSION}",
+          "User-Agent" => "SurrealDB Ruby Client #{SurrealDB::Client::VERSION}",
           "Accept" => "application/json",
           "Authorization" => "Basic #{Base64.strict_encode64("#{username}:#{password}")}",
           "Content-Type" => "application/x-www-form-urlencoded",

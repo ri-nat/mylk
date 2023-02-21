@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module SurrealDB
-  module Clients
+  module Client
     # Base class for SurrealDB clients
     class Base
       attr_accessor :uri, :username, :password, :namespace, :database
