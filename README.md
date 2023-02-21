@@ -18,16 +18,16 @@ bundle install
 
 ## Usage
 
-Both the HTTP and Websocket clients provide the same interface for executing commands. The only difference is the underlying transport mechanism.
+Both the HTTP and WebSocket clients provide the same interface for executing commands. The only difference is the underlying transport mechanism.
 
 If you are building concurrent (multi-threaded) applications, it is recommended to use the WebSocket client due to its superior performance. However, the HTTP client is still thread-safe and can also be used if you prefer.
 
-### Websocket Client
+### WebSocket Client
 
 ```ruby
 require "surrealdb/client/websocket"
 
-client = SurrealDB::Client::Websocket.new("surrealdb://root:root@localhost:8000/test/test").tap(&:connect)
+client = SurrealDB::Client::WebSocket.new("surrealdb://root:root@localhost:8000/test/test").tap(&:connect)
 response = client.execute("INFO FOR DB")
 
 response.success? # => true

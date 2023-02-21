@@ -6,8 +6,8 @@ require_relative "base"
 
 module SurrealDB
   module Client
-    # Websocket client for the SurrealDB
-    class Websocket < Base
+    # WebSocket client for the SurrealDB
+    class WebSocket < Base
       WAIT_SLEEP_DURATION = 0.001 # 1 millisecond
       CONNECTION_TIMEOUT = 2 # 2 seconds
       REQUEST_TIMEOUT = 2 # 2 seconds
@@ -22,7 +22,7 @@ module SurrealDB
       end
 
       def connect
-        @connection = WebSocket::Client::Simple.connect(uri.to_s, headers: headers)
+        @connection = ::WebSocket::Client::Simple.connect(uri.to_s, headers: headers)
 
         attach_on_message_handler
         wait_for_connection_establishment

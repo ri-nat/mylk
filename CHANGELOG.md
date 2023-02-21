@@ -1,4 +1,10 @@
-## v0.1.1 (2023-02-21)
+## Unreleased
+
+### Feat
+
+- add type definitions
+
+## v0.1.1 (2023-02-22)
 
 ### Fix
 

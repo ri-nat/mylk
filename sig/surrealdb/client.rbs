@@ -24,7 +24,7 @@ module SurrealDB
       def execute: (String) -> Response
     end
 
-    class Websocket < Base
+    class WebSocket < Base
       def execute: (String) -> Response
     end
   end
