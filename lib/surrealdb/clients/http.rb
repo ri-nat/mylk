@@ -4,30 +4,16 @@ require "base64"
 require "net/http"
 require "json"
 
+require_relative "base"
+
 module SurrealDB
   module Clients
     # HTTP client for the SurrealDB
-    class HTTP
-      ENDPOINT = "/sql"
+    class HTTP < Base
+      def initialize(url)
+        super
 
-      # Parameters:
-      #   uri: String
-      #     The URI of the SurrealDB server
-      #     Example: "http://user:password@localhost:8080/namespace/database"
-      def initialize(uri)
-        @connected = false
-        @uri = URI(uri)
-
-        # Parse the namespace and database from the URI
-        @namespace, @database = @uri.path.split("/")[1..2]
-
-        @username = @uri.user
-        @password = @uri.password
-
-        # Set the path to the SQL endpoint
-        @uri.path = ENDPOINT
-
-        @connection = Net::HTTP.new(@uri.host, @uri.port)
+        @connection = Net::HTTP.new(uri.host, uri.port)
       end
 
       def connect
@@ -37,18 +23,20 @@ module SurrealDB
         # Ping the server to check if the connection is established
         execute("INFO FOR DB").success?
       rescue Error
-        @connected = false
+        disconnect
       end
 
       def disconnect
+        return unless connected?
+
         @connection.finish
         @connected = false
       end
 
-      def execute(query)
+      def execute(query) # rubocop:disable Metrics/AbcSize
         connect unless connected?
 
-        request = Net::HTTP::Post.new(@uri.path, headers).tap { |r| r.body = query }
+        request = Net::HTTP::Post.new(uri.path, headers).tap { |r| r.body = query }
         response = @connection.request(request)
 
         raise Error, format_error(response) unless (200..300).include?(response.code.to_i)
@@ -56,36 +44,25 @@ module SurrealDB
         Response.new(parse_json_body(response).first)
       end
 
-      def connected?
-        @connected
+      private
+
+      def endpoint_path
+        "/sql"
       end
 
-      private
+      def endpoint_scheme
+        "http"
+      end
 
       def headers
         @headers ||= {
           "User-Agent" => "SurrealDB Ruby Client #{SurrealDB::VERSION}",
           "Accept" => "application/json",
-          "Authorization" => "Basic #{Base64.strict_encode64("#{@username}:#{@password}")}",
+          "Authorization" => "Basic #{Base64.strict_encode64("#{username}:#{password}")}",
           "Content-Type" => "application/x-www-form-urlencoded",
-          "NS" => @namespace,
-          "DB" => @database
+          "NS" => namespace,
+          "DB" => database
         }
-      end
-
-      def format_error(response)
-        json = parse_json_body(response)
-
-        "Query failed with status code #{response.code}\n" \
-          "details: #{json["details"]}\n" \
-          "information: #{json["information"]}\n" \
-          "description: #{json["description"]}"
-      end
-
-      def parse_json_body(response)
-        JSON.parse(response.body)
-      rescue JSON::ParserError
-        raise Error, "Invalid JSON response from SurrealDB: #{response.body}"
       end
     end
   end

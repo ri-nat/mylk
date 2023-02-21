@@ -1,5 +1,7 @@
 # SurrealDB Ruby Driver
 
+[![Tests](https://github.com/ri-nat/surrealdb.ruby/actions/workflows/main.yml/badge.svg)](https://github.com/ri-nat/surrealdb.ruby/actions/workflows/main.yml)
+
 ## Installation
 
 Install the gem and add to the application's Gemfile:
@@ -10,9 +12,39 @@ gem 'surrealdb', github: 'ri-nat/surrealdb.ruby'
 
 ## Usage
 
-> See `test/surrealdb/clients/` for examples.
+Both the HTTP and Websocket clients provide the same interface for executing commands. The only difference is the underlying transport mechanism.
 
-TODO: Write usage instructions here
+Database connection string is in the format of `surrealdb://<username>:<password>@<host>:<port>/<namespace>/<database>`.
+
+### HTTP Client
+
+```ruby
+require 'surrealdb'
+
+client = SurrealDB::Clients::HTTP.new("surrealdb://root:root@localhost:8000/test/test")
+client.connect
+
+response = client.execute("INFO FOR DB")
+
+response.success? # => true
+response.time # => "265.625µs"
+response.result # => {"dl"=>{}, "dt"=>{}, "pa"=>{}, "sc"=>{}, "tb"=>{}}
+```
+
+### Websocket Client
+
+```ruby
+require 'surrealdb'
+
+client = SurrealDB::Clients::Websockets.new("surrealdb://root:root@localhost:8000/test/test")
+client.connect
+
+response = client.execute("INFO FOR DB")
+
+response.success? # => true
+response.time # => "265.625µs"
+response.result # => {"dl"=>{}, "dt"=>{}, "pa"=>{}, "sc"=>{}, "tb"=>{}}
+```
 
 ## Development
 
