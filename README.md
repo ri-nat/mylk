@@ -1,29 +1,33 @@
 # SurrealDB client for Ruby
 
-[![Tests](https://github.com/ri-nat/surrealdb.ruby/actions/workflows/main.yml/badge.svg)](https://github.com/ri-nat/surrealdb.ruby/actions/workflows/main.yml)
+[![Tests](https://github.com/ri-nat/surrealdb-client/actions/workflows/main.yml/badge.svg)](https://github.com/ri-nat/surrealdb-client/actions/workflows/main.yml)
 
 ## Installation
 
-Install the gem and add to the application's Gemfile:
+Add gem to the application's Gemfile:
 
 ```bash
 gem "surrealdb-client"
+```
+
+Install it:
+
+```bash
+bundle install
 ```
 
 ## Usage
 
 Both the HTTP and Websocket clients provide the same interface for executing commands. The only difference is the underlying transport mechanism.
 
-Database connection string is in the format of `surrealdb://<username>:<password>@<host>:<port>/<namespace>/<database>`.
+If you are building concurrent (multi-threaded) applications, it is recommended to use the WebSocket client due to its superior performance. However, the HTTP client is still thread-safe and can also be used if you prefer.
 
-### HTTP Client
+### Websocket Client
 
 ```ruby
-require "surrealdb/client/http"
+require "surrealdb/client/websocket"
 
-client = SurrealDB::Client::HTTP.new("surrealdb://root:root@localhost:8000/test/test")
-client.connect
-
+client = SurrealDB::Client::Websocket.new("surrealdb://root:root@localhost:8000/test/test").tap(&:connect)
 response = client.execute("INFO FOR DB")
 
 response.success? # => true
@@ -31,19 +35,23 @@ response.time # => "265.625µs"
 response.result # => {"dl"=>{}, "dt"=>{}, "pa"=>{}, "sc"=>{}, "tb"=>{}}
 ```
 
-### Websocket Client
+### HTTP Client
 
 ```ruby
-require "surrealdb/client/websocket"
+require "surrealdb/client/http"
 
-client = SurrealDB::Client::Websocket.new("surrealdb://root:root@localhost:8000/test/test")
-client.connect
-
+client = SurrealDB::Client::HTTP.new("surrealdb://root:root@localhost:8000/test/test").tap(&:connect)
 response = client.execute("INFO FOR DB")
 
 response.success? # => true
 response.time # => "265.625µs"
 response.result # => {"dl"=>{}, "dt"=>{}, "pa"=>{}, "sc"=>{}, "tb"=>{}}
+```
+
+### Database connection string format
+
+```text
+surrealdb://<username>:<password>@<host>:<port>/<namespace>/<database>
 ```
 
 ## Development
@@ -54,7 +62,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at <https://github.com/ri-nat/surrealdb.ruby>.
+Bug reports and pull requests are welcome on GitHub at <https://github.com/ri-nat/surrealdb-client>.
 
 ## License
 

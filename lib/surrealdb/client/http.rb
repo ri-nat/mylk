@@ -14,11 +14,17 @@ module SurrealDB
         super
 
         @connection = Net::HTTP.new(uri.host, uri.port)
+        # Mutex to prevent multiple threads from using the same connection
+        @mutex = Mutex.new
       end
 
       def connect
-        @connection.start
-        @connected = true
+        return true if connected?
+
+        @mutex.synchronize do
+          @connection.start
+          @connected = true
+        end
 
         # Ping the server to check if the connection is established
         execute("INFO FOR DB").success?
@@ -29,15 +35,17 @@ module SurrealDB
       def disconnect
         return unless connected?
 
-        @connection.finish
-        @connected = false
+        @mutex.synchronize do
+          @connection.finish
+          @connected = false
+        end
       end
 
       def execute(query) # rubocop:disable Metrics/AbcSize
         connect unless connected?
 
         request = Net::HTTP::Post.new(uri.path, headers).tap { |r| r.body = query }
-        response = @connection.request(request)
+        response = @mutex.synchronize { @connection.request(request) }
 
         raise Error, format_error(response) unless (200..300).include?(response.code.to_i)
 

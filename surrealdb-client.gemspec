@@ -9,13 +9,13 @@ Gem::Specification.new do |spec|
   spec.email = ["mail@rinatshay.com"]
 
   spec.summary = "SurrealDB client for Ruby (HTTP and WebSocket)"
-  spec.homepage = "https://github.com/ri-nat/surrealdb.ruby"
+  spec.homepage = "https://github.com/ri-nat/surrealdb-client"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/ri-nat/surrealdb.ruby"
-  spec.metadata["changelog_uri"] = "https://github.com/ri-nat/surrealdb.ruby/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/ri-nat/surrealdb-client"
+  spec.metadata["changelog_uri"] = "https://github.com/ri-nat/surrealdb-client/CHANGELOG.md"
   spec.metadata["rubygems_mfa_required"] = "true"
 
   # Specify which files should be added to the gem when it is released.
