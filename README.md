@@ -7,7 +7,7 @@
 Install the gem and add to the application's Gemfile:
 
 ```bash
-gem 'surrealdb', github: 'ri-nat/surrealdb.ruby'
+gem 'surrealdb', git: 'https://github.com/ri-nat/surrealdb.ruby'
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ response.result # => {"dl"=>{}, "dt"=>{}, "pa"=>{}, "sc"=>{}, "tb"=>{}}
 ```ruby
 require 'surrealdb'
 
-client = SurrealDB::Clients::Websockets.new("surrealdb://root:root@localhost:8000/test/test")
+client = SurrealDB::Clients::Websocket.new("surrealdb://root:root@localhost:8000/test/test")
 client.connect
 
 response = client.execute("INFO FOR DB")

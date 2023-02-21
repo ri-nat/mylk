@@ -6,8 +6,8 @@ require_relative "base"
 
 module SurrealDB
   module Clients
-    # Websockets client for the SurrealDB
-    class Websockets < Base
+    # Websocket client for the SurrealDB
+    class Websocket < Base
       WAIT_SLEEP_DURATION = 0.001 # 1 millisecond
       CONNECTION_TIMEOUT = 2 # 2 seconds
       REQUEST_TIMEOUT = 2 # 2 seconds
@@ -87,7 +87,7 @@ module SurrealDB
           connected = true
         end
 
-        # If the connection became connected before the handler was attached, we need to check it
+        # If the connection became opened before the handler was attached, we need to check it
         connected ||= @connection.open?
 
         Timeout.timeout(CONNECTION_TIMEOUT) do
