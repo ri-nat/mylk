@@ -1,4 +1,4 @@
-name: Ruby
+name: Tests
 
 on:
   push:
@@ -32,5 +32,5 @@ jobs:
       run: bundle exec rubocop
     - name: Run tests
       env:
-        DATABASE_URL: http://root:root@localhost:8000/test/test
+        DATABASE_URL: surrealdb://root:root@localhost:8000/test/test
       run: bundle exec rake test

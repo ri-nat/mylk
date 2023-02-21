@@ -13,8 +13,6 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
-  spec.metadata["allowed_push_host"] = "Set to your gem server 'https://example.com'"
-
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/ri-nat/surrealdb.ruby"
   spec.metadata["changelog_uri"] = "https://github.com/ri-nat/surrealdb.ruby/CHANGELOG.md"
@@ -37,7 +35,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rbs", "~> 2.8"
   spec.add_development_dependency "rubocop", "~> 1.21"
-
-  # For more information and examples about making a new gem, check out our
-  # guide at: https://bundler.io/guides/creating_gem.html
 end
