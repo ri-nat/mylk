@@ -38,7 +38,7 @@ module SurrealDB
       end
 
       def disconnect
-        return unless connected?
+        return if disconnected?
 
         @connection.close
         @connected = false

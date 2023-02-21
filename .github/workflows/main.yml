@@ -33,4 +33,6 @@ jobs:
     - name: Run tests
       env:
         DATABASE_URL: surrealdb://root:root@localhost:8000/test/test
+        RBS_TEST_TARGET: 'SurrealDB::*'
+        RUBYOPT: "-rbundler/setup -rrbs/test/setup"
       run: bundle exec rake test

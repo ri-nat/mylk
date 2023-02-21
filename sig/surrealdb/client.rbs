@@ -1,0 +1,31 @@
+module SurrealDB
+  module Client
+    VERSION: String
+
+    class Response
+      attr_reader result: Array[Object]
+      attr_reader status: String
+      attr_reader time: String
+
+      def initialize: (Object) -> void
+      def success?: () -> bool
+      def error?: () -> bool
+    end
+
+    class Base
+      def initialize: (String) -> void
+      def connect: () -> void
+      def disconnect: () -> void
+      def connected?: () -> bool
+      def disconnected?: () -> bool
+    end
+
+    class HTTP < Base
+      def execute: (String) -> Response
+    end
+
+    class Websocket < Base
+      def execute: (String) -> Response
+    end
+  end
+end

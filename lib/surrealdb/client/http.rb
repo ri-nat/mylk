@@ -33,7 +33,7 @@ module SurrealDB
       end
 
       def disconnect
-        return unless connected?
+        return if disconnected?
 
         @mutex.synchronize do
           @connection.finish
@@ -42,7 +42,7 @@ module SurrealDB
       end
 
       def execute(query) # rubocop:disable Metrics/AbcSize
-        connect unless connected?
+        connect if disconnected?
 
         request = Net::HTTP::Post.new(uri.path, headers).tap { |r| r.body = query }
         response = @mutex.synchronize { @connection.request(request) }

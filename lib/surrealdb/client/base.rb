@@ -26,6 +26,10 @@ module SurrealDB
         !!@connected
       end
 
+      def disconnected?
+        !connected?
+      end
+
       private
 
       def endpoint_path
