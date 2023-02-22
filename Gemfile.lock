@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    surrealdb-client (0.1.1)
+    surrealdb-client (0.1.2)
       websocket-client-simple (~> 0.6)
 
 GEM
