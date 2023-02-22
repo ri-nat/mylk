@@ -1,13 +1,13 @@
-# SurrealDB client for Ruby
+# Mylk — The SurrealDB Ruby client
 
-[![Tests](https://github.com/ri-nat/surrealdb-client/actions/workflows/main.yml/badge.svg)](https://github.com/ri-nat/surrealdb-client/actions/workflows/main.yml)
+[![Tests](https://github.com/ri-nat/mylk/actions/workflows/main.yml/badge.svg)](https://github.com/ri-nat/mylk/actions/workflows/main.yml)
 
 ## Installation
 
 Add gem to the application's Gemfile:
 
 ```bash
-gem "surrealdb-client"
+gem "mylk"
 ```
 
 Install it:
@@ -25,9 +25,9 @@ If you are building concurrent (multi-threaded) applications, it is recommended 
 ### WebSocket Client
 
 ```ruby
-require "surrealdb/client/websocket"
+require "mylk/websocket"
 
-client = SurrealDB::Client::WebSocket.new("surrealdb://root:root@localhost:8000/test/test").tap(&:connect)
+client = Mylk::WebSocket.new("surrealdb://root:root@localhost:8000/test/test").tap(&:connect)
 response = client.execute("INFO FOR DB")
 
 response.success? # => true
@@ -38,9 +38,9 @@ response.result # => {"dl"=>{}, "dt"=>{}, "pa"=>{}, "sc"=>{}, "tb"=>{}}
 ### HTTP Client
 
 ```ruby
-require "surrealdb/client/http"
+require "mylk/http"
 
-client = SurrealDB::Client::HTTP.new("surrealdb://root:root@localhost:8000/test/test").tap(&:connect)
+client = Mylk::HTTP.new("surrealdb://root:root@localhost:8000/test/test").tap(&:connect)
 response = client.execute("INFO FOR DB")
 
 response.success? # => true
@@ -51,7 +51,7 @@ response.result # => {"dl"=>{}, "dt"=>{}, "pa"=>{}, "sc"=>{}, "tb"=>{}}
 ### Database connection string format
 
 ```text
-surrealdb://<username>:<password>@<host>:<port>/<namespace>/<database>
+surreal://<username>:<password>@<host>:<port>/<namespace>/<database>
 ```
 
 ## Development
@@ -62,7 +62,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at <https://github.com/ri-nat/surrealdb-client>.
+Bug reports and pull requests are welcome on GitHub at <https://github.com/ri-nat/mylk>.
 
 ## License
 

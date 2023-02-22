@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
-require_relative "lib/surrealdb/client/version"
+require_relative "lib/mylk/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "surrealdb-client"
-  spec.version = SurrealDB::Client::VERSION
+  spec.name = "mylk"
+  spec.version = Mylk::VERSION
   spec.authors = ["Rinat Shaykhutdinov"]
   spec.email = ["mail@rinatshay.com"]
 
   spec.summary = "SurrealDB client for Ruby (HTTP and WebSocket)"
-  spec.homepage = "https://github.com/ri-nat/surrealdb-client"
+  spec.homepage = "https://github.com/ri-nat/mylk"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/ri-nat/surrealdb-client"
-  spec.metadata["changelog_uri"] = "https://github.com/ri-nat/surrealdb-client/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/ri-nat/mylk"
+  spec.metadata["changelog_uri"] = "https://github.com/ri-nat/mylk/CHANGELOG.md"
   spec.metadata["rubygems_mfa_required"] = "true"
 
   # Specify which files should be added to the gem when it is released.

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    surrealdb-client (0.1.2)
+    mylk (0.1.0)
       websocket-client-simple (~> 0.6)
 
 GEM
@@ -43,10 +43,10 @@ PLATFORMS
 
 DEPENDENCIES
   minitest (~> 5.0)
+  mylk!
   rake (~> 13.0)
   rbs (~> 2.8)
   rubocop (~> 1.21)
-  surrealdb-client!
 
 BUNDLED WITH
    2.3.26
